@@ -1,29 +1,34 @@
-/* 🌈 Transisi tema */
+/* 🌈 Transisi tema dan font dasar */
 * {
   transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
   box-sizing: border-box;
 }
 
-/* ---------- LIGHT MODE (default) ---------- */
-body.light-mode {
-  background-color: #f5f7fb;
-  color: #1e1e1e;
+body {
   font-family: "Poppins", system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* ---------------- HEADER ---------------- */
+/* ---------- LIGHT MODE ---------- */
+body.light-mode {
+  background-color: #f4f6fa;
+  color: #1e1e1e;
+}
+
+/* ---------- HEADER ---------- */
 .app-header {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2rem;
   background: linear-gradient(90deg, #4a8bdf, #5ca9ff);
   color: white;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  margin: 1rem auto;
-  max-width: 900px;
+  margin: 1.5rem auto;
+  max-width: 1200px;
   text-align: center;
 }
 
@@ -56,13 +61,13 @@ body.light-mode {
   background: #f1f1f1;
 }
 
-/* ---------- SEARCH BAR ---------- */
+/* ---------- SEARCH ---------- */
 .search-container {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   margin: 1rem auto;
-  padding: 1.2rem;
+  padding: 1.2rem 1.5rem;
   max-width: 900px;
   text-align: center;
 }
@@ -121,23 +126,58 @@ body.light-mode {
   background-color: #d3deed;
 }
 
+/* ---------- DASHBOARD GRID (DESKTOP) ---------- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  width: 90%;
+}
+
+/* Responsif: di mobile, ubah jadi 1 kolom */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- DETAIL CARD & TABLE ---------- */
 .detail-card,
 .forecast-table {
   background: white;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  margin: 1rem auto;
   padding: 1.5rem;
-  max-width: 420px;
-  text-align: center;
   animation: fadeIn 0.6s ease-in-out;
 }
 
-.forecast-table {
-  max-width: 600px;
+.detail-card {
+  text-align: center;
 }
 
+.detail-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e2a38;
+}
+
+.forecast-table h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* ---------- TABLE ---------- */
 .forecast-table table {
   width: 100%;
   border-collapse: collapse;
@@ -170,30 +210,20 @@ body.light-mode {
 }
 
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-/* ☀️ SUNNY ICON SPIN */
+/* ☀️ SUNNY SPIN */
 .detail-card img[src*="01d"],
 .detail-card img[src*="01n"] {
   animation: rotateSun 10s linear infinite;
 }
 
 @keyframes rotateSun {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* 🌧️ RAIN SWING */
@@ -204,21 +234,9 @@ body.light-mode {
 }
 
 @keyframes rainSwing {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(3deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-3deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
 }
 
 /* ☁️ CLOUD DRIFT */
@@ -229,15 +247,8 @@ body.light-mode {
 }
 
 @keyframes cloudDrift {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(8px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
 }
 
 /* ---------- DARK MODE ---------- */
@@ -248,7 +259,6 @@ body.dark-mode {
 
 body.dark-mode .app-header {
   background: linear-gradient(90deg, #1f1f1f, #333);
-  color: #eee;
 }
 
 body.dark-mode .search-container,
@@ -266,15 +276,6 @@ body.dark-mode .forecast-table th {
 
 body.dark-mode .forecast-table tr:hover {
   background-color: #252525;
-}
-
-body.dark-mode .header-buttons button {
-  background: #333;
-  color: #eee;
-}
-
-body.dark-mode .header-buttons button:hover {
-  background: #444;
 }
 
 /* ---------- ANIMASI MASUK ---------- */
