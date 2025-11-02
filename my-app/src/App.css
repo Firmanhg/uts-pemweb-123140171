@@ -1,93 +1,186 @@
-/* 🌈 Animasi transisi tema */
+/* 🌤️ GLOBAL THEME & ANIMATION */
 * {
-  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* ---------- LIGHT MODE (default) ---------- */
+/* 🌞 LIGHT MODE */
 body.light-mode {
-  background-color: #f7f9fc;
-  color: #222;
+  background-color: #eef3fa;
+  color: #1e293b;
 }
 
+/* 🌙 DARK MODE */
+body.dark-mode {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+/* ===== HEADER ===== */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #4a8bdf;
+  padding: 1.2rem 2rem;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: white;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .header-buttons button {
-  margin-left: 8px;
-  padding: 0.4rem 0.8rem;
+  margin-left: 10px;
+  padding: 0.6rem 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3a8a;
   cursor: pointer;
-  background: white;
-  color: #333;
   font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .header-buttons button:hover {
-  transform: scale(1.05);
-  background-color: #e6e6e6;
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
 }
 
+/* ===== CARD GENERAL ===== */
 .detail-card,
 .forecast-table,
 .search-container {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin: 1rem;
-  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  max-width: 900px;
+  animation: fadeIn 0.5s ease;
 }
 
-/* ---------- DARK MODE ---------- */
-body.dark-mode {
-  background-color: #121212;
-  color: #eee;
-}
-
-body.dark-mode .app-header {
-  background-color: #2b2b2b;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+body.light-mode .detail-card,
+body.light-mode .forecast-table,
+body.light-mode .search-container {
+  --card-bg: #ffffff;
 }
 
 body.dark-mode .detail-card,
 body.dark-mode .forecast-table,
 body.dark-mode .search-container {
-  background: #1f1f1f;
-  color: #eee;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  --card-bg: #1e293b;
 }
 
-body.dark-mode .header-buttons button {
-  background: #333;
-  color: #eee;
+/* ===== DETAIL CARD ===== */
+.detail-card {
+  text-align: center;
+}
+.detail-card img {
+  width: 120px;
+  height: 120px;
+}
+.detail-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.detail-card h3 {
+  font-size: 1.2rem;
+  color: #64748b;
 }
 
-body.dark-mode .header-buttons button:hover {
-  background: #444;
+/* ===== FORECAST TABLE ===== */
+.forecast-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.forecast-table th {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: inherit;
+  padding: 0.75rem;
+}
+.forecast-table td {
+  text-align: center;
+  padding: 0.7rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+}
+.forecast-table img {
+  width: 36px;
 }
 
+/* ===== SEARCH FORM ===== */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-container form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #94a3b8;
+  font-size: 1rem;
+}
+
+.search-container button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+.search-container button:hover {
+  background-color: #1e40af;
+}
+
+/* ===== HISTORY & SUGGESTIONS ===== */
+.history {
+  margin-top: 1rem;
+}
+.history button {
+  margin: 5px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background-color: #94a3b8;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+.history button:hover {
+  background-color: #64748b;
+}
+
+.suggestions {
+  list-style: none;
+  background: var(--card-bg);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.suggestions li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
 .suggestions li:hover {
-  background: #ddd;
+  background-color: rgba(59,130,246,0.15);
 }
 
-body.dark-mode .suggestions li:hover {
-  background: #333;
-}
-
-.detail-card,
-.forecast-table {
-  animation: fadeIn 0.5s ease-in;
-}
-
+/* ===== ANIMATION ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
