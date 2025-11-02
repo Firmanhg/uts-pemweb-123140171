@@ -5,7 +5,6 @@ const SearchForm = ({ onSearch, history, onDeleteHistoryItem }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  // HAPUS: State isFocused
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
@@ -54,12 +53,11 @@ const SearchForm = ({ onSearch, history, onDeleteHistoryItem }) => {
             onChange={handleInputChange}
             placeholder="Cari nama kota..."
             autoComplete="off"
-            // HAPUS: onFocus dan onBlur
           />
           <button type="submit">Cari</button>
         </form>
 
-        {/* --- RIWAYAT DIPINDAHKAN KEMBALI KE SINI --- */}
+        {}
         {history.length > 0 && (
           <div className="history">
             <h4>Riwayat:</h4>
@@ -68,14 +66,12 @@ const SearchForm = ({ onSearch, history, onDeleteHistoryItem }) => {
                 <div key={i} className="history-item">
                   <span 
                     className="history-name" 
-                    // GANTI KEMBALI ke onClick
                     onClick={() => onSearch(item)}
                   >
                     {item}
                   </span>
                   <button 
                     className="history-delete" 
-                    // GANTI KEMBALI ke onClick
                     onClick={() => onDeleteHistoryItem(item)}
                   >
                     &times;
@@ -85,9 +81,9 @@ const SearchForm = ({ onSearch, history, onDeleteHistoryItem }) => {
             </div>
           </div>
         )}
-      </div> {/* Akhir .search-container */}
+      </div> {}
 
-      {/* --- Daftar Saran (Tetap di luar sebagai overlay) --- */}
+      {}
       {suggestions.length > 0 && (
         <ul className="suggestions">
           {suggestions.map((item, i) => (

@@ -5,7 +5,6 @@ const DetailCard = ({ weather, unit, city }) => {
   const tempUnit = unit === "metric" ? "°C" : "°F";
   const windUnit = unit ===- "metric" ? "m/s" : "mph";
 
-  // Pemetaan Ikon ke Kelas Font Awesome
   const getFontAwesomeClass = (code) => {
     const baseClass = "fa-solid";
     switch (code) {

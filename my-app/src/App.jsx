@@ -83,7 +83,7 @@ const App = () => {
         onDeleteHistoryItem={handleDeleteHistoryItem}
       />
       
-      {/* Pastikan HANYA 2 baris ini yang ada di dalam grid */}
+      {}
       <div className="dashboard-grid">
         {weather && <DetailCard weather={weather} unit={unit} city={city} />}
         {forecast.length > 0 && <DataTable forecast={forecast} unit={unit} />}

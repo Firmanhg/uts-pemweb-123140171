@@ -1,22 +1,14 @@
-/* ---------------------------------- */
-/* FILE: index.css           */
-/* ---------------------------------- */
-
-/* Impor font global */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Reset dasar */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   
-  /* Transisi global */
   transition: background-color 0.4s ease, color 0.4s ease,
               box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 body {
   font-family: "Poppins", system-ui, sans-serif;
-  /* Sisanya akan diurus oleh App.css */
 }

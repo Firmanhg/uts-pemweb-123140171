@@ -1,11 +1,8 @@
-// FILE: DataTable.jsx (Versi Font Awesome)
-
 import React from "react";
 
 const DataTable = ({ forecast, unit }) => {
   const tempUnit = unit === "metric" ? "°C" : "°F";
 
-  // BARU: Pemetaan Ikon ke Kelas Font Awesome
   const getFontAwesomeClass = (code) => {
     const baseClass = "fa-solid";
     switch (code) {
