@@ -11,27 +11,39 @@
 
 Aplikasi ini dapat diakses secara langsung melalui link berikut:
 
-[https://LINK-DEPLOYMENT-ANDA.vercel.app/](https://LINK-DEPLOYMENT-ANDA.vercel.app/)
+https://uts-pemweb-123140171.vercel.app/
 
 ## Pratinjau (Preview)
 
 Tampilan aplikasi dalam mode terang (Light Mode) dan mode gelap (Dark Mode).
 
 <p align="center">
-  <img src="image_43f2c3.png" width="48%" alt="Light Mode Preview">
-  <img src="image_43854f.png" width="48%" alt="Dark Mode Preview">
+  <img width="1919" height="964" alt="image" src="https://github.com/user-attachments/assets/6eb8ebac-f349-43f8-af35-bc27470d5306" />
+  <img width="1919" height="952" alt="image" src="https://github.com/user-attachments/assets/142ce968-5fb3-4022-b51a-f2ea607216a9" />
 </p>
 
 ## Fitur Utama
 
 * **Form Input Nama Kota:** Dilengkapi dengan saran *autocomplete* saat pengguna mengetik, menggunakan OpenWeatherMap Geo API.
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/2d55c7a0-e502-41d9-8c4d-12082c4d0901" />
+
 * **Display Cuaca Saat Ini:** Menampilkan suhu, deskripsi cuaca, kelembapan, dan kecepatan angin pada kartu detail.
+<img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/04bf763d-d0d5-42b3-98ce-6bfde3f17560" />
+
 * **Tabel Forecast 5 Hari:** Tampilan tabel yang rapi untuk prakiraan cuaca 5 hari ke depan.
+<img width="1918" height="562" alt="image" src="https://github.com/user-attachments/assets/d7d14e31-8c6a-4638-ace2-37bb68bd96fa" />
+  
 * **Riwayat Pencarian:** Menyimpan 5 pencarian terakhir di `localStorage` agar mudah diakses kembali.
+<img width="1919" height="937" alt="image" src="https://github.com/user-attachments/assets/d150a1a1-cb35-4a08-b22b-79b33fca129e" />
+
 * **Toogle Unit:** Mengubah tampilan suhu antara Celcius (°C) dan Fahrenheit (°F).
+<img width="1919" height="145" alt="image" src="https://github.com/user-attachments/assets/e7004dc1-6074-4ce9-b58e-b9aa5d7fbdd1" />
+
 * **Mode Terang & Gelap:** Tema "Aurora Glass" yang cantik dan dapat diganti. Preferensi tema disimpan di `localStorage`.
+<img width="1919" height="926" alt="image" src="https://github.com/user-attachments/assets/ce974e1d-77a7-40ca-bd08-c7d519e875fc" />
+
 * **Hapus Riwayat:** Pengguna dapat menghapus item dari daftar riwayat satu per satu.
-* **Ikon Modern:** Menggunakan Font Awesome untuk ikon cuaca yang jelas dan responsif terhadap tema (berbeda warna di *light* vs *dark mode*).
+<img width="1919" height="234" alt="image" src="https://github.com/user-attachments/assets/b5e6b85a-1504-451b-affe-0b98ca5c849e" />
 
 ## Teknologi yang Digunakan
 
