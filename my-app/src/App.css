@@ -1,42 +1,67 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ---------- LIGHT MODE (default) ---------- */
+body.light-mode {
+  background-color: #f7f9fc;
+  color: #222;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #4a8bdf;
+  color: white;
+  border-radius: 0 0 12px 12px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-buttons button {
+  margin-left: 8px;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: white;
+  color: #333;
+  font-weight: 500;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.detail-card,
+.forecast-table,
+.search-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 1rem;
+  padding: 1rem;
 }
 
-.card {
-  padding: 2em;
+/* ---------- DARK MODE ---------- */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
 }
 
-.read-the-docs {
-  color: #888;
+body.dark-mode .app-header {
+  background-color: #2b2b2b;
+}
+
+body.dark-mode .detail-card,
+body.dark-mode .forecast-table,
+body.dark-mode .search-container {
+  background: #1f1f1f;
+  color: #eee;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .header-buttons button {
+  background: #333;
+  color: #eee;
+}
+
+.suggestions li:hover {
+  background: #ddd;
+}
+
+body.dark-mode .suggestions li:hover {
+  background: #444;
 }

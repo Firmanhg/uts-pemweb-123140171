@@ -1,12 +1,17 @@
 import React from "react";
 
-const Header = ({ unit, toggleUnit }) => {
+const Header = ({ unit, toggleUnit, darkMode, toggleDarkMode }) => {
   return (
     <header className="app-header">
       <h1>🌤️ Weather Dashboard</h1>
-      <button onClick={toggleUnit} className="toggle-unit">
-        Ubah ke {unit === "metric" ? "°F" : "°C"}
-      </button>
+      <div className="header-buttons">
+        <button onClick={toggleUnit} className="toggle-unit">
+          {unit === "metric" ? "°C → °F" : "°F → °C"}
+        </button>
+        <button onClick={toggleDarkMode} className="toggle-theme">
+          {darkMode ? "🌙 Dark" : "☀️ Light"}
+        </button>
+      </div>
     </header>
   );
 };
