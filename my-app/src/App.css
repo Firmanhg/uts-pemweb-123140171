@@ -1,5 +1,5 @@
 /* ---------------------------------- */
-/* FILE: App.css (Versi FINAL)      */
+/* FILE: App.css (Final: Brighter Aurora) */
 /* ---------------------------------- */
 
 
@@ -10,9 +10,10 @@ body {
   min-height: 100vh;
 }
 
-/* Aurora untuk Light Mode */
+/* --- PERUBAHAN DI SINI --- */
+/* Aurora untuk Light Mode (Vibrant) */
 body.light-mode {
-  background-color: #f4f6fa;
+  background-color: #dbeafe; /* BARU: Latar belakang biru-langit muda */
   color: #1e1e1e;
 }
 body.light-mode::before, 
@@ -20,24 +21,26 @@ body.light-mode::after {
   content: '';
   position: fixed;
   z-index: -1;
-  filter: blur(120px);
-  opacity: 0.3;
+  filter: blur(100px);
+  opacity: 0.8; /* BARU: Lebih kuat lagi (dari 0.6 ke 0.8) */
   border-radius: 50%;
 }
 body.light-mode::before {
   background: linear-gradient(90deg, #4a8bdf, #a0c7ff);
-  width: 350px; height: 350px;
-  top: -100px; left: -100px;
+  width: 450px; height: 450px;
+  top: -150px; left: -150px;
 }
 body.light-mode::after {
   background: linear-gradient(90deg, #89f7fe, #66a6ff);
-  width: 400px; height: 400px;
-  bottom: -150px; right: -150px;
+  width: 500px; height: 500px;
+  bottom: -200px; right: -200px;
 }
+/* --- AKHIR PERUBAHAN --- */
 
-/* Aurora untuk Dark Mode */
+
+/* Aurora untuk Dark Mode (Tetap sama) */
 body.dark-mode {
-  background-color: #121826; /* Dark blue, bukan hitam pekat */
+  background-color: #121826; 
   color: #e0e0e0;
 }
 body.dark-mode::before, 
@@ -200,8 +203,6 @@ body.light-mode .history h4 { color: #555; }
   margin: 0.2rem;
   cursor: pointer;
   font-weight: 500;
-  
-  /* PERBAIKAN: Menambahkan warna teks */
   color: #333; 
 }
 .history button:hover { background: rgba(0, 0, 0, 0.1); }
@@ -209,8 +210,6 @@ body.light-mode .history h4 { color: #555; }
 body.dark-mode .history button {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
-  
-  /* PERBAIKAN: Menambahkan warna teks */
   color: #eee;
 }
 body.dark-mode .history button:hover { background: rgba(255, 255, 255, 0.2); }
@@ -238,7 +237,6 @@ body.dark-mode .history button:hover { background: rgba(255, 255, 255, 0.2); }
   font-size: 1.5rem;
   font-weight: 700;
 }
-/* BARU: Style untuk nama kota */
 .detail-card .detail-city-name {
   font-size: 1.1rem;
   font-weight: 500;
@@ -292,54 +290,33 @@ body.dark-mode .forecast-table tr:hover {
 }
 
 
-/* --- 9. Animasi (DIPERTAHANKAN) --- */
-.weather-icon {
-  width: 120px;
-  height: 120px;
-  animation: float 4s ease-in-out infinite;
+/* --- 9. Animasi & Ikon Emoji --- */
+
+.weather-icon-emoji {
+  font-size: 100px; 
+  line-height: 1.2;
+  display: inline-block;
+  margin: 0.5rem 0;
+  animation: float 4s ease-in-out infinite; 
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
+.table-weather-icon-emoji {
+  font-size: 1.8rem; 
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* --- Keyframes --- */
+
+/* Animasi Float (Dipakai oleh emoji besar) */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
-/* ☀️ SUNNY SPIN */
-.detail-card img[src*="01d"],
-.detail-card img[src*="01n"] {
-  animation: rotateSun 10s linear infinite;
-}
-@keyframes rotateSun {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 🌧️ RAIN SWING */
-.detail-card img[src*="09"],
-.detail-card img[src*="10"],
-.detail-card img[src*="11"] {
-  animation: rainSwing 2s ease-in-out infinite;
-}
-@keyframes rainSwing {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(3deg); }
-  75% { transform: rotate(-3deg); }
-}
-
-/* ☁️ CLOUD DRIFT */
-.detail-card img[src*="02"],
-.detail-card img[src*="03"],
-.detail-card img[src*="04"] {
-  animation: cloudDrift 6s ease-in-out infinite;
-}
-@keyframes cloudDrift {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(8px); }
-}
-
-/* Animasi masuk */
+/* Animasi masuk (Dipakai oleh kartu) */
 @keyframes fadeIn {
   from {
     opacity: 0;
