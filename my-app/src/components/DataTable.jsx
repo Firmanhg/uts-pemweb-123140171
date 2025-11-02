@@ -2,7 +2,6 @@ import React from "react";
 
 const DataTable = ({ forecast, unit }) => {
   const tempUnit = unit === "metric" ? "°C" : "°F";
-
   return (
     <div className="forecast-table">
       <h3>📅 Prakiraan 5 Hari Kedepan</h3>
@@ -23,7 +22,7 @@ const DataTable = ({ forecast, unit }) => {
               <td>
                 <img
                   src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
-                  alt=""
+                  alt={item.weather[0].main}
                 />{" "}
                 {item.weather[0].main}
               </td>
