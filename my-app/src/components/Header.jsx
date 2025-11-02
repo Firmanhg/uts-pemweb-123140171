@@ -5,10 +5,10 @@ const Header = ({ unit, toggleUnit, darkMode, toggleDarkMode }) => {
     <header className="app-header">
       <h1>🌤️ Weather Dashboard</h1>
       <div className="header-buttons">
-        <button onClick={toggleUnit} className="toggle-unit">
+        <button onClick={toggleUnit}>
           {unit === "metric" ? "°C → °F" : "°F → °C"}
         </button>
-        <button onClick={toggleDarkMode} className="toggle-theme">
+        <button onClick={toggleDarkMode}>
           {darkMode ? "🌙 Dark" : "☀️ Light"}
         </button>
       </div>

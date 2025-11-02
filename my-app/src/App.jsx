@@ -6,7 +6,7 @@ import DataTable from "./components/DataTable";
 import "./App.css";
 
 const App = () => {
-  const apiKey = "50b3a9ff8a5ab035ea1f548201b31b95"; 
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [city, setCity] = useState("Cilegon");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
@@ -19,6 +19,7 @@ const App = () => {
   );
 
   const fetchWeather = async (cityName) => {
+    if (!cityName) return;
     try {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=${unit}&lang=id`
@@ -62,8 +63,13 @@ const App = () => {
   }, [darkMode]);
 
   return (
-    <div className={`app-container ${darkMode ? "dark" : ""}`}>
-      <Header unit={unit} toggleUnit={toggleUnit} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <div className="app-container">
+      <Header
+        unit={unit}
+        toggleUnit={toggleUnit}
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+      />
       <SearchForm onSearch={fetchWeather} history={history} />
       {weather && <DetailCard weather={weather} unit={unit} />}
       {forecast.length > 0 && <DataTable forecast={forecast} unit={unit} />}

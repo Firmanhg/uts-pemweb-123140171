@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
 const SearchForm = ({ onSearch, history }) => {
-  const apiKey = "YOUR_API_KEY_HERE";
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setQuery(value);
-
     if (value.length > 2) {
       const res = await fetch(
         `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`
@@ -36,7 +35,6 @@ const SearchForm = ({ onSearch, history }) => {
           value={query}
           onChange={handleInputChange}
           placeholder="Cari nama kota..."
-          list="city-suggestions"
         />
         <button type="submit">Cari</button>
       </form>
