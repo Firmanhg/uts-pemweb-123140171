@@ -1,3 +1,8 @@
+/* 🌈 Animasi transisi tema */
+* {
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
 /* ---------- LIGHT MODE (default) ---------- */
 body.light-mode {
   background-color: #f7f9fc;
@@ -12,6 +17,7 @@ body.light-mode {
   background-color: #4a8bdf;
   color: white;
   border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .header-buttons button {
@@ -23,6 +29,12 @@ body.light-mode {
   background: white;
   color: #333;
   font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header-buttons button:hover {
+  transform: scale(1.05);
+  background-color: #e6e6e6;
 }
 
 .detail-card,
@@ -43,6 +55,7 @@ body.dark-mode {
 
 body.dark-mode .app-header {
   background-color: #2b2b2b;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .detail-card,
@@ -58,10 +71,30 @@ body.dark-mode .header-buttons button {
   color: #eee;
 }
 
+body.dark-mode .header-buttons button:hover {
+  background: #444;
+}
+
 .suggestions li:hover {
   background: #ddd;
 }
 
 body.dark-mode .suggestions li:hover {
-  background: #444;
+  background: #333;
+}
+
+.detail-card,
+.forecast-table {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

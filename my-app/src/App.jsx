@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Header from "./header";
-import SearchForm from "./SearchForm";
-import DetailCard from "./DetailCard";
-import DataTable from "./DataTable";
+import Header from "./components/Header";
+import SearchForm from "./components/SearchForm";
+import DetailCard from "./components/DetailCard";
+import DataTable from "./components/DataTable";
 import "./App.css";
 
 const App = () => {
-  const apiKey = "YOUR_API_KEY_HERE"; // 🔑 Ganti dengan API key kamu
+  const apiKey = "50b3a9ff8a5ab035ea1f548201b31b95"; 
   const [city, setCity] = useState("Cilegon");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
