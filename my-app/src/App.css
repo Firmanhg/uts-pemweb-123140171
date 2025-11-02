@@ -1,5 +1,5 @@
 /* ---------------------------------- */
-/* FILE: App.css (Final: Responsive Icons) */
+/* FILE: App.css (Final: Suggestions) */
 /* ---------------------------------- */
 
 
@@ -9,8 +9,6 @@ body {
   overflow-x: hidden;
   min-height: 100vh;
 }
-
-/* Aurora untuk Light Mode (Vibrant) */
 body.light-mode {
   background-color: #dbeafe; 
   color: #1e1e1e;
@@ -34,9 +32,6 @@ body.light-mode::after {
   width: 500px; height: 500px;
   bottom: -200px; right: -200px;
 }
-
-
-/* Aurora untuk Dark Mode */
 body.dark-mode {
   background-color: #121826; 
   color: #e0e0e0;
@@ -84,8 +79,6 @@ body.dark-mode::after {
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
-
-/* Kaca di Light Mode */
 body.light-mode .app-header,
 body.light-mode .search-container,
 body.light-mode .detail-card,
@@ -93,8 +86,6 @@ body.light-mode .forecast-table {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
-
-/* Kaca di Dark Mode */
 body.dark-mode .app-header,
 body.dark-mode .search-container,
 body.dark-mode .detail-card,
@@ -126,8 +117,6 @@ body.dark-mode .app-header {
   align-items: center;
   gap: 0.5rem;
 }
-
-/* Tombol Header */
 .header-buttons { display: flex; gap: 0.5rem; }
 .header-buttons button {
   background: rgba(255, 255, 255, 0.3);
@@ -154,9 +143,18 @@ body.dark-mode .header-buttons button:hover {
 
 
 /* --- 5. Penyesuaian Search --- */
-.search-container {
-  margin-bottom: 1rem;
+/* BARU: Wrapper untuk positioning */
+.search-container-wrapper {
+  position: relative;
   width: 100%;
+  margin-bottom: 1rem; /* Margin dipindahkan ke sini */
+}
+
+.search-container {
+  /* margin-bottom: 1rem; <-- DIHAPUS DARI SINI */
+  width: 100%;
+  position: relative; /* Penting untuk z-index riwayat */
+  z-index: 5; /* Di bawah suggestions (10), di atas grid (1) */
 }
 .search-container form {
   display: flex;
@@ -191,26 +189,69 @@ body.dark-mode .search-container input {
 
 /* Tombol Riwayat */
 .history { margin-top: 1rem; }
-.history h4 { margin-bottom: 0.5rem; }
+.history h4 { 
+  margin-bottom: 0.5rem; 
+  text-align: center; 
+}
 body.light-mode .history h4 { color: #555; }
-.history button {
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.history-item {
+  display: flex;
+  align-items: center;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 0.4rem 0.8rem;
-  margin: 0.2rem;
-  cursor: pointer;
   font-weight: 500;
-  color: #333; 
+  color: #333;
+  overflow: hidden; 
+  transition: all 0.2s ease;
 }
-.history button:hover { background: rgba(0, 0, 0, 0.1); }
-
-body.dark-mode .history button {
+.history-name {
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.history-item:hover .history-name {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.history-delete {
+  background: transparent;
+  border: none;
+  color: #333;
+  opacity: 0.6; 
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+.history-delete:hover {
+  background-color: rgba(239, 68, 68, 0.1); 
+  opacity: 1;
+  color: #ef4444;
+}
+body.dark-mode .history-item {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
   color: #eee;
 }
-body.dark-mode .history button:hover { background: rgba(255, 255, 255, 0.2); }
+body.dark-mode .history-name:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+body.dark-mode .history-delete {
+  color: #eee;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .history-delete:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
 
 
 /* --- 6. Dashboard Grid --- */
@@ -220,6 +261,8 @@ body.dark-mode .history button:hover { background: rgba(255, 255, 255, 0.2); }
   gap: 2rem;
   width: 100%;
   margin-bottom: 1.5rem;
+  position: relative; /* Penting untuk z-index */
+  z-index: 1; /* Pastikan di bawah search/suggestions */
 }
 @media (max-width: 768px) {
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -288,8 +331,7 @@ body.dark-mode .forecast-table tr:hover {
 }
 
 
-/* --- 9. Animasi & Ikon Font Awesome (BARU) --- */
-
+/* --- 9. Animasi & Ikon Font Awesome --- */
 .weather-icon-fa {
   font-size: 90px;
   line-height: 1;
@@ -299,7 +341,6 @@ body.dark-mode .forecast-table tr:hover {
   animation: float 4s ease-in-out infinite; 
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
-
 .table-weather-icon-fa {
   font-size: 1.5rem; 
   vertical-align: middle;
@@ -308,65 +349,57 @@ body.dark-mode .forecast-table tr:hover {
   text-align: center;
   margin-right: 0.5rem;
 }
-
-/* --- Pewarnaan Ikon (Light Mode) --- */
 body.light-mode .fa-sun,
 body.light-mode .fa-cloud-sun {
-  color: #f59e0b; /* Kuning-Oranye tua */
+  color: #f59e0b; 
 }
 body.light-mode .fa-moon,
 body.light-mode .fa-cloud-moon {
-  color: #6b7280; /* Abu-abu tua (bulan "mati") */
+  color: #6b7280; 
 }
 body.light-mode .fa-cloud,
 body.light-mode .fa-cloud-meatball,
 body.light-mode .fa-smog {
-  color: #9ca3af; /* Abu-abu netral */
+  color: #9ca3af; 
 }
 body.light-mode .fa-cloud-showers-heavy,
 body.light-mode .fa-cloud-sun-rain,
 body.light-mode .fa-cloud-moon-rain,
 body.light-mode .fa-cloud-bolt {
-  color: #3b82f6; /* Biru tua */
+  color: #3b82f6; 
 }
 body.light-mode .fa-snowflake {
-  color: #06b6d4; /* Cyan tua */
+  color: #06b6d4; 
 }
-
-/* --- Pewarnaan Ikon (Dark Mode) --- */
 body.dark-mode .fa-sun,
 body.dark-mode .fa-cloud-sun {
-  color: #facc15; /* Kuning cerah */
+  color: #facc15; 
 }
 body.dark-mode .fa-moon,
 body.dark-mode .fa-cloud-moon {
-  color: #e5e7eb; /* Putih/Abu-abu sangat muda */
+  color: #e5e7eb; 
 }
 body.dark-mode .fa-cloud,
 body.dark-mode .fa-cloud-meatball,
 body.dark-mode .fa-smog {
-  color: #d1d5db; /* Abu-abu muda */
+  color: #d1d5db; 
 }
 body.dark-mode .fa-cloud-showers-heavy,
 body.dark-mode .fa-cloud-sun-rain,
 body.dark-mode .fa-cloud-moon-rain,
 body.dark-mode .fa-cloud-bolt {
-  color: #60a5fa; /* Biru muda */
+  color: #60a5fa; 
 }
 body.dark-mode .fa-snowflake {
-  color: #a5f3fc; /* Biru es */
+  color: #a5f3fc; 
 }
 
 /* --- Keyframes --- */
-
-/* Animasi Float */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
-
-/* Animasi masuk */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -376,4 +409,65 @@ body.dark-mode .fa-snowflake {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+/* --- 10. Style Saran Pencarian (BARU) --- */
+
+.suggestions {
+  /* Positioning */
+  position: absolute;
+  width: 100%; /* Lebar penuh wrapper */
+  top: calc(100% + 8px); /* Tepat di bawah kartu, dengan jarak 8px */
+  left: 0;
+  z-index: 10; /* Pastikan di atas elemen lain */
+  
+  /* Styling Glassmorphism (SAMA SEPERTI KARTU LAIN) */
+  border-radius: 20px; 
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  /* Hapus style list bawaan */
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem; /* Padding internal */
+}
+
+/* Style Kaca (Light Mode) */
+body.light-mode .suggestions {
+  background: rgba(255, 255, 255, 0.7); /* Sedikit lebih pekat */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Style Kaca (Dark Mode) */
+body.dark-mode .suggestions {
+  background: rgba(28, 38, 59, 0.8); /* Sedikit lebih pekat */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Item saran (li) */
+.suggestions li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+}
+
+/* Warna Teks (Light Mode) */
+body.light-mode .suggestions li {
+  color: #1e2a38;
+}
+body.light-mode .suggestions li:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Warna Teks (Dark Mode) */
+body.dark-mode .suggestions li {
+  color: #e0e0e0;
+}
+body.dark-mode .suggestions li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }

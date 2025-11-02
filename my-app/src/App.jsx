@@ -20,7 +20,7 @@ const App = () => {
 
   const fetchWeather = async (cityName) => {
     if (!cityName) return;
-    setCity(cityName); // <-- PERBAIKAN BUG
+    setCity(cityName); 
     try {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=${unit}&lang=id`
@@ -58,6 +58,13 @@ const App = () => {
       return newMode;
     });
   };
+  
+  // BARU: Fungsi untuk menghapus item riwayat
+  const handleDeleteHistoryItem = (itemToDelete) => {
+    const newHistory = history.filter((item) => item !== itemToDelete);
+    setHistory(newHistory);
+    localStorage.setItem("searchHistory", JSON.stringify(newHistory));
+  };
 
   useEffect(() => {
     document.body.className = darkMode ? "dark-mode" : "light-mode";
@@ -71,10 +78,14 @@ const App = () => {
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
       />
-      <SearchForm onSearch={fetchWeather} history={history} />
+      {/* BARU: Tambahkan prop onDeleteHistoryItem */}
+      <SearchForm 
+        onSearch={fetchWeather} 
+        history={history} 
+        onDeleteHistoryItem={handleDeleteHistoryItem}
+      />
       
       <div className="dashboard-grid">
-        {/* PERBAIKAN NAMA KOTA: prop city={city} ditambahkan */}
         {weather && <DetailCard weather={weather} unit={unit} city={city} />}
         {forecast.length > 0 && <DataTable forecast={forecast} unit={unit} />}
       </div>
