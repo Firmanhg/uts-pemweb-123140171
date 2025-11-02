@@ -18,12 +18,16 @@ const App = () => {
     localStorage.getItem("theme") === "dark"
   );
 
-  const fetchWeather = async (cityName) => {
-    if (!cityName) return;
-    try {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=${unit}&lang=id`
-      );
+  // Di dalam App.jsx
+const fetchWeather = async (cityName) => {
+  if (!cityName) return;
+  setCity(cityName); // <-- TAMBAHKAN BARIS INI
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=${unit}&lang=id`
+    );
+    // ... sisa kode ...
+
       const data = await res.json();
       if (data.cod === "200") {
         setWeather(data.list[0]);
@@ -62,6 +66,8 @@ const App = () => {
     document.body.className = darkMode ? "dark-mode" : "light-mode";
   }, [darkMode]);
 
+  // Di dalam file App.jsx
+
   return (
     <div className="app-container">
       <Header
@@ -71,8 +77,15 @@ const App = () => {
         toggleDarkMode={toggleDarkMode}
       />
       <SearchForm onSearch={fetchWeather} history={history} />
-      {weather && <DetailCard weather={weather} unit={unit} />}
-      {forecast.length > 0 && <DataTable forecast={forecast} unit={unit} />}
+
+      {/* 👇 TAMBAHKAN DIV PEMBUNGKUS INI 👇
+        Ini akan mengaktifkan layout 2 kolom di desktop 
+      */}
+      <div className="dashboard-grid">
+        {weather && <DetailCard weather={weather} unit={unit} />}
+        {forecast.length > 0 && <DataTable forecast={forecast} unit={unit} />}
+      </div>
+      
     </div>
   );
 };

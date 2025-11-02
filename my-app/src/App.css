@@ -1,37 +1,130 @@
-/* 🌈 Transisi tema dan font dasar */
-* {
-  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
-  box-sizing: border-box;
-}
+/* ---------------------------------- */
+/* FILE: App.css            */
+/* (Versi "Aurora Glass" dari Gemini) */
+/* ---------------------------------- */
 
+
+/* --- 1. Latar Belakang "Aurora" --- */
 body {
-  font-family: "Poppins", system-ui, sans-serif;
-  margin: 0;
-  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* ---------- LIGHT MODE ---------- */
+/* Aurora untuk Light Mode */
 body.light-mode {
   background-color: #f4f6fa;
   color: #1e1e1e;
 }
-
-/* ---------- HEADER ---------- */
-.app-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.2rem 2rem;
-  background: linear-gradient(90deg, #4a8bdf, #5ca9ff);
-  color: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  margin: 1.5rem auto;
-  max-width: 1200px;
-  text-align: center;
+body.light-mode::before, 
+body.light-mode::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  filter: blur(120px);
+  opacity: 0.3;
+  border-radius: 50%;
+}
+body.light-mode::before {
+  background: linear-gradient(90deg, #4a8bdf, #a0c7ff);
+  width: 350px; height: 350px;
+  top: -100px; left: -100px;
+}
+body.light-mode::after {
+  background: linear-gradient(90deg, #89f7fe, #66a6ff);
+  width: 400px; height: 400px;
+  bottom: -150px; right: -150px;
 }
 
+/* Aurora untuk Dark Mode */
+body.dark-mode {
+  background-color: #121826; /* Dark blue, bukan hitam pekat */
+  color: #e0e0e0;
+}
+body.dark-mode::before, 
+body.dark-mode::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  filter: blur(120px);
+  opacity: 0.25;
+  border-radius: 50%;
+}
+body.dark-mode::before {
+  background: linear-gradient(90deg, #1d4ed8, #4f46e5);
+  width: 350px; height: 350px;
+  top: -100px; left: -100px;
+}
+body.dark-mode::after {
+  background: linear-gradient(90deg, #0e7490, #22d3ee);
+  width: 400px; height: 400px;
+  bottom: -150px; right: -150px;
+}
+
+
+/* --- 2. Container Utama --- */
+/* Menggunakan perbaikan layout dari chat kita sebelumnya */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+
+/* --- 3. Kartu "Glassmorphism" --- */
+/* Ini adalah style utama untuk semua kartu */
+.app-header, 
+.search-container, 
+.detail-card, 
+.forecast-table {
+  border-radius: 20px; /* Sedikit lebih bulat */
+  padding: 1.5rem;
+  
+  /* Efek Kaca */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* Bayangan halus */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Kaca di Light Mode */
+body.light-mode .app-header,
+body.light-mode .search-container,
+body.light-mode .detail-card,
+body.light-mode .forecast-table {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Kaca di Dark Mode */
+body.dark-mode .app-header,
+body.dark-mode .search-container,
+body.dark-mode .detail-card,
+body.dark-mode .forecast-table {
+  background: rgba(28, 38, 59, 0.7); /* Kaca gelap transparan */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* --- 4. Penyesuaian Header --- */
+.app-header {
+  display: flex;
+  justify-content: space-between; /* Merenggangkan judul dan tombol */
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+body.light-mode .app-header {
+  color: #1e2a38; /* Teks lebih gelap di kaca terang */
+}
+body.dark-mode .app-header {
+  color: white;
+}
 .app-header h1 {
   font-size: 1.8rem;
   font-weight: 600;
@@ -40,168 +133,163 @@ body.light-mode {
   gap: 0.5rem;
 }
 
-.header-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
+/* Tombol Header */
+.header-buttons { display: flex; gap: 0.5rem; }
 .header-buttons button {
-  background: white;
+  background: rgba(255, 255, 255, 0.3);
   color: #333;
-  border: none;
-  border-radius: 8px;
-  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s ease;
 }
-
 .header-buttons button:hover {
   transform: scale(1.05);
-  background: #f1f1f1;
+  background: rgba(255, 255, 255, 0.5);
+}
+body.dark-mode .header-buttons button {
+  background: rgba(0, 0, 0, 0.2);
+  color: #eee;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+body.dark-mode .header-buttons button:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- SEARCH ---------- */
+
+/* --- 5. Penyesuaian Search --- */
 .search-container {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  margin: 1rem auto;
-  padding: 1.2rem 1.5rem;
-  max-width: 900px;
-  text-align: center;
+  margin-bottom: 1rem;
+  width: 100%;
 }
-
 .search-container form {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 0.5rem;
 }
-
 .search-container input {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 60%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%; /* Memenuhi sisa ruang */
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.5);
 }
-
+body.dark-mode .search-container input {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
 .search-container button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 8px;
-  background-color: #4a8bdf;
+  border-radius: 12px;
+  background-color: #4a8bdf; /* Tetap pakai biru sebagai Aksen */
   color: white;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .search-container button:hover {
   background-color: #357ed6;
 }
 
-/* ---------- HISTORY ---------- */
-.history {
-  margin-top: 1rem;
-}
-
-.history h4 {
-  margin-bottom: 0.5rem;
-  color: #444;
-}
-
+/* Tombol Riwayat */
+.history { margin-top: 1rem; }
+.history h4 { margin-bottom: 0.5rem; }
+body.light-mode .history h4 { color: #555; }
 .history button {
-  background-color: #e0e6ef;
-  border: none;
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   padding: 0.4rem 0.8rem;
   margin: 0.2rem;
   cursor: pointer;
   font-weight: 500;
 }
-
-.history button:hover {
-  background-color: #d3deed;
+.history button:hover { background: rgba(0, 0, 0, 0.1); }
+body.dark-mode .history button {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
+body.dark-mode .history button:hover { background: rgba(255, 255, 255, 0.2); }
 
-/* ---------- DASHBOARD GRID (DESKTOP) ---------- */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
 
+/* --- 6. Dashboard Grid --- */
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 1.5rem auto;
-  width: 90%;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
-
-/* Responsif: di mobile, ubah jadi 1 kolom */
 @media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
+  .dashboard-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- DETAIL CARD & TABLE ---------- */
-.detail-card,
-.forecast-table {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  animation: fadeIn 0.6s ease-in-out;
-}
 
+/* --- 7. Detail Card & Table --- */
 .detail-card {
   text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
 }
-
 .detail-card h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1e2a38;
 }
+body.light-mode .detail-card h2 { color: #1e2a38; }
 
+.forecast-table {
+  animation: fadeIn 0.6s ease-in-out;
+}
 .forecast-table h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+body.dark-mode .forecast-table h3 {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* ---------- TABLE ---------- */
+
+/* --- 8. Style Tabel --- */
 .forecast-table table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
-
-.forecast-table th,
+.forecast-table th, 
 .forecast-table td {
-  padding: 0.8rem;
+  padding: 1rem 0.5rem; /* Spasi lebih lega */
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-
 .forecast-table th {
-  background-color: #eef3fb;
   font-weight: 600;
-  color: #333;
+  padding-bottom: 1rem;
 }
+body.light-mode .forecast-table th { color: #333; }
 
+/* Hapus background 'th' yg lama */
 .forecast-table tr:hover {
-  background-color: #f9fbff;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+body.dark-mode .forecast-table th, 
+body.dark-mode .forecast-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+body.dark-mode .forecast-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* ---------- ANIMASI ICON CUACA ---------- */
+
+/* --- 9. Animasi (DIPERTAHANKAN) --- */
+/* Animasi Anda sudah bagus, jadi kita pakai lagi! */
+
 .weather-icon {
   width: 120px;
   height: 120px;
@@ -220,7 +308,6 @@ body.light-mode {
 .detail-card img[src*="01n"] {
   animation: rotateSun 10s linear infinite;
 }
-
 @keyframes rotateSun {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -232,7 +319,6 @@ body.light-mode {
 .detail-card img[src*="11"] {
   animation: rainSwing 2s ease-in-out infinite;
 }
-
 @keyframes rainSwing {
   0%, 100% { transform: rotate(0deg); }
   25% { transform: rotate(3deg); }
@@ -245,40 +331,12 @@ body.light-mode {
 .detail-card img[src*="04"] {
   animation: cloudDrift 6s ease-in-out infinite;
 }
-
 @keyframes cloudDrift {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(8px); }
 }
 
-/* ---------- DARK MODE ---------- */
-body.dark-mode {
-  background-color: #121212;
-  color: #eee;
-}
-
-body.dark-mode .app-header {
-  background: linear-gradient(90deg, #1f1f1f, #333);
-}
-
-body.dark-mode .search-container,
-body.dark-mode .detail-card,
-body.dark-mode .forecast-table {
-  background: #1e1e1e;
-  color: #ddd;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode .forecast-table th {
-  background-color: #2a2a2a;
-  color: #fff;
-}
-
-body.dark-mode .forecast-table tr:hover {
-  background-color: #252525;
-}
-
-/* ---------- ANIMASI MASUK ---------- */
+/* Animasi masuk */
 @keyframes fadeIn {
   from {
     opacity: 0;
