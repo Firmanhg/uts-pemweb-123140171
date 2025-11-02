@@ -1,5 +1,5 @@
 /* ---------------------------------- */
-/* FILE: App.css (Final: Suggestions) */
+/* FILE: App.css (Final: Unified History) */
 /* ---------------------------------- */
 
 
@@ -143,18 +143,14 @@ body.dark-mode .header-buttons button:hover {
 
 
 /* --- 5. Penyesuaian Search --- */
-/* BARU: Wrapper untuk positioning */
 .search-container-wrapper {
   position: relative;
   width: 100%;
-  margin-bottom: 1rem; /* Margin dipindahkan ke sini */
+  margin-bottom: 1rem; 
 }
-
 .search-container {
-  /* margin-bottom: 1rem; <-- DIHAPUS DARI SINI */
   width: 100%;
-  position: relative; /* Penting untuk z-index riwayat */
-  z-index: 5; /* Di bawah suggestions (10), di atas grid (1) */
+  position: relative; 
 }
 .search-container form {
   display: flex;
@@ -187,8 +183,10 @@ body.dark-mode .search-container input {
   background-color: #357ed6;
 }
 
-/* Tombol Riwayat */
-.history { margin-top: 1rem; }
+/* --- PERUBAHAN DI SINI: Tombol Riwayat --- */
+.history { 
+  margin-top: 1rem; 
+}
 .history h4 { 
   margin-bottom: 0.5rem; 
   text-align: center; 
@@ -200,58 +198,68 @@ body.light-mode .history h4 { color: #555; }
   gap: 0.5rem;
   justify-content: center;
 }
+
+/* (1) Perkecil border-radius */
 .history-item {
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 8px; /* <-- LEBIH KECIL (dari 10px) */
   font-weight: 500;
-  color: #333;
+  color: #333; /* (2) Tetapkan warna teks di sini */
   overflow: hidden; 
   transition: all 0.2s ease;
 }
+
 .history-name {
   padding: 0.4rem 0.8rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
 .history-item:hover .history-name {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+/* (3) Samakan warna X */
 .history-delete {
-  background: transparent;
+  background: transparent; /* Pastikan transparan */
   border: none;
-  color: #333;
+  color: inherit; /* <--- AMBIL WARNA DARI PARENT (.history-item) */
   opacity: 0.6; 
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.6rem; /* Padding sedikit lebih kecil dari nama */
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 0.9rem;  
+  font-weight: 700; 
   line-height: 1;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 }
 .history-delete:hover {
   background-color: rgba(239, 68, 68, 0.1); 
   opacity: 1;
-  color: #ef4444;
+  color: #ef4444; /* Hanya 'x' yang jadi merah saat di-hover */
 }
+
+/* --- Dark Mode untuk Riwayat --- */
 body.dark-mode .history-item {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
-  color: #eee;
+  color: #eee; /* (2) Tetapkan warna teks di sini */
 }
 body.dark-mode .history-name:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
+/* (3) Samakan warna X */
 body.dark-mode .history-delete {
-  color: #eee;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  color: inherit; /* <--- AMBIL WARNA DARI PARENT (.history-item) */
+  opacity: 0.7; /* Sedikit lebih jelas di dark mode */
 }
 body.dark-mode .history-delete:hover {
   background-color: rgba(239, 68, 68, 0.2);
   color: #f87171;
 }
+/* --- AKHIR PERUBAHAN --- */
 
 
 /* --- 6. Dashboard Grid --- */
@@ -261,8 +269,7 @@ body.dark-mode .history-delete:hover {
   gap: 2rem;
   width: 100%;
   margin-bottom: 1.5rem;
-  position: relative; /* Penting untuk z-index */
-  z-index: 1; /* Pastikan di bawah search/suggestions */
+  position: relative; 
 }
 @media (max-width: 768px) {
   .dashboard-grid { grid-template-columns: 1fr; }
@@ -412,42 +419,29 @@ body.dark-mode .fa-snowflake {
 }
 
 
-/* --- 10. Style Saran Pencarian (BARU) --- */
-
+/* --- 10. Style Saran Pencarian --- */
 .suggestions {
-  /* Positioning */
   position: absolute;
-  width: 100%; /* Lebar penuh wrapper */
-  top: calc(100% + 8px); /* Tepat di bawah kartu, dengan jarak 8px */
+  width: 100%; 
+  top: calc(100% + 8px); 
   left: 0;
-  z-index: 10; /* Pastikan di atas elemen lain */
-  
-  /* Styling Glassmorphism (SAMA SEPERTI KARTU LAIN) */
+  z-index: 10; 
   border-radius: 20px; 
-  padding: 1rem;
+  padding: 1.5rem; 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  
-  /* Hapus style list bawaan */
   list-style-type: none;
   margin: 0;
-  padding: 0.5rem; /* Padding internal */
 }
-
-/* Style Kaca (Light Mode) */
 body.light-mode .suggestions {
-  background: rgba(255, 255, 255, 0.7); /* Sedikit lebih pekat */
+  background: rgba(255, 255, 255, 0.7); 
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
-
-/* Style Kaca (Dark Mode) */
 body.dark-mode .suggestions {
-  background: rgba(28, 38, 59, 0.8); /* Sedikit lebih pekat */
+  background: rgba(28, 38, 59, 0.8); 
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Item saran (li) */
 .suggestions li {
   padding: 0.75rem 1rem;
   cursor: pointer;
@@ -455,16 +449,12 @@ body.dark-mode .suggestions {
   transition: background-color 0.2s ease;
   font-weight: 500;
 }
-
-/* Warna Teks (Light Mode) */
 body.light-mode .suggestions li {
   color: #1e2a38;
 }
 body.light-mode .suggestions li:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-
-/* Warna Teks (Dark Mode) */
 body.dark-mode .suggestions li {
   color: #e0e0e0;
 }

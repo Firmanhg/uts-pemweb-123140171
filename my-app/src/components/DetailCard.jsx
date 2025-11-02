@@ -1,13 +1,11 @@
-// FILE: DetailCard.jsx (Versi Font Awesome)
-
 import React from "react";
 
 const DetailCard = ({ weather, unit, city }) => {
   if (!weather || !weather.weather) return null;
   const tempUnit = unit === "metric" ? "°C" : "°F";
-  const windUnit = unit === "metric" ? "m/s" : "mph";
+  const windUnit = unit ===- "metric" ? "m/s" : "mph";
 
-  // BARU: Pemetaan Ikon ke Kelas Font Awesome
+  // Pemetaan Ikon ke Kelas Font Awesome
   const getFontAwesomeClass = (code) => {
     const baseClass = "fa-solid";
     switch (code) {
@@ -40,7 +38,6 @@ const DetailCard = ({ weather, unit, city }) => {
       <h2>{weather.dt_txt.split(" ")[0]}</h2>
       <h4 className="detail-city-name">{city}</h4>
 
-      {/* GANTI <i> Climacon dengan <i> Font Awesome */}
       <i className={`weather-icon-fa ${iconClass}`}></i>
       
       <h3>{weather.weather[0].description}</h3>
