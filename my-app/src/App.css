@@ -1,228 +1,287 @@
-/* 🌤️ TRANSISI & FONT */
+/* 🌈 Transisi tema */
 * {
-  transition: background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease;
-  font-family: "Inter", "Poppins", system-ui, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
   box-sizing: border-box;
 }
 
-/* ================== THEME MODE ================== */
+/* ---------- LIGHT MODE (default) ---------- */
 body.light-mode {
-  background-color: #eef3fa;
-  color: #1e293b;
+  background-color: #f5f7fb;
+  color: #1e1e1e;
+  font-family: "Poppins", system-ui, sans-serif;
 }
 
-body.dark-mode {
-  background-color: #0f172a;
-  color: #e2e8f0;
-}
-
-/* ================== HEADER ================== */
+/* ---------------- HEADER ---------------- */
 .app-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1.2rem 2rem;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #4a8bdf, #5ca9ff);
   color: white;
-  border-radius: 0 0 18px 18px;
+  border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  margin: 1rem auto;
+  max-width: 900px;
+  text-align: center;
 }
 
 .app-header h1 {
   font-size: 1.8rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .header-buttons button {
-  margin-left: 10px;
-  padding: 0.6rem 1rem;
+  background: white;
+  color: #333;
   border: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #1e3a8a;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
   font-weight: 500;
+  transition: all 0.3s ease;
 }
+
 .header-buttons button:hover {
+  transform: scale(1.05);
+  background: #f1f1f1;
+}
+
+/* ---------- SEARCH BAR ---------- */
+.search-container {
   background: white;
-  transform: translateY(-2px);
-}
-
-/* ================== LAYOUT GRID ================== */
-.app-container {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem;
-}
-
-@media (max-width: 900px) {
-  .app-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ================== CARD STYLE ================== */
-.detail-card,
-.forecast-table,
-.search-container {
-  background: var(--card-bg);
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  animation: fadeIn 0.6s ease;
-}
-
-body.light-mode .detail-card,
-body.light-mode .forecast-table,
-body.light-mode .search-container {
-  --card-bg: #ffffff;
-}
-
-body.dark-mode .detail-card,
-body.dark-mode .forecast-table,
-body.dark-mode .search-container {
-  --card-bg: #1e293b;
-}
-
-/* ================== SEARCH FORM ================== */
-.search-container {
-  grid-column: 1 / -1;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 1rem auto;
+  padding: 1.2rem;
+  max-width: 900px;
   text-align: center;
 }
 
 .search-container form {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  max-width: 600px;
-  margin: 0 auto;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .search-container input {
-  flex: 1;
-  padding: 0.7rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #94a3b8;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 60%;
   font-size: 1rem;
 }
 
 .search-container button {
-  background-color: #2563eb;
-  color: white;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 10px;
-  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  background-color: #4a8bdf;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-container button:hover {
+  background-color: #357ed6;
+}
+
+/* ---------- HISTORY ---------- */
+.history {
+  margin-top: 1rem;
+}
+
+.history h4 {
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.history button {
+  background-color: #e0e6ef;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.2rem;
   cursor: pointer;
   font-weight: 500;
 }
-.search-container button:hover {
-  background-color: #1e40af;
+
+.history button:hover {
+  background-color: #d3deed;
 }
 
-/* ================== DETAIL CARD ================== */
-.detail-card {
+/* ---------- DETAIL CARD & TABLE ---------- */
+.detail-card,
+.forecast-table {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin: 1rem auto;
+  padding: 1.5rem;
+  max-width: 420px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-.detail-card img {
-  width: 130px;
-  height: 130px;
-}
-
-.detail-card h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.3rem;
-}
-
-.detail-card h3 {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #94a3b8;
-}
-
-.detail-card p {
-  margin: 0.3rem 0;
-  font-size: 1rem;
-}
-
-/* ================== FORECAST TABLE ================== */
-.forecast-table h3 {
-  margin-bottom: 1rem;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 600;
+.forecast-table {
+  max-width: 600px;
 }
 
 .forecast-table table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.forecast-table th,
+.forecast-table td {
+  padding: 0.8rem;
   text-align: center;
+  border-bottom: 1px solid #eee;
 }
 
 .forecast-table th {
-  padding: 0.8rem;
-  background-color: rgba(99, 102, 241, 0.1);
+  background-color: #eef3fb;
   font-weight: 600;
+  color: #333;
 }
 
-.forecast-table td {
-  padding: 0.7rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.15);
+.forecast-table tr:hover {
+  background-color: #f9fbff;
 }
 
-.forecast-table img {
-  width: 36px;
+/* ---------- ANIMASI ICON CUACA ---------- */
+.weather-icon {
+  width: 120px;
+  height: 120px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-/* ================== HISTORY & SUGGESTIONS ================== */
-.history {
-  margin-top: 1rem;
-}
-.history h4 {
-  margin-bottom: 0.5rem;
-}
-.history button {
-  margin: 5px;
-  padding: 0.5rem 0.8rem;
-  border: none;
-  background-color: #64748b;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-.history button:hover {
-  background-color: #475569;
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-.suggestions {
-  list-style: none;
-  background: var(--card-bg);
-  border-radius: 10px;
-  margin-top: 0.5rem;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-.suggestions li {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-}
-.suggestions li:hover {
-  background-color: rgba(59, 130, 246, 0.15);
+/* ☀️ SUNNY ICON SPIN */
+.detail-card img[src*="01d"],
+.detail-card img[src*="01n"] {
+  animation: rotateSun 10s linear infinite;
 }
 
-/* ================== ANIMASI ================== */
+@keyframes rotateSun {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 🌧️ RAIN SWING */
+.detail-card img[src*="09"],
+.detail-card img[src*="10"],
+.detail-card img[src*="11"] {
+  animation: rainSwing 2s ease-in-out infinite;
+}
+
+@keyframes rainSwing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* ☁️ CLOUD DRIFT */
+.detail-card img[src*="02"],
+.detail-card img[src*="03"],
+.detail-card img[src*="04"] {
+  animation: cloudDrift 6s ease-in-out infinite;
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- DARK MODE ---------- */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode .app-header {
+  background: linear-gradient(90deg, #1f1f1f, #333);
+  color: #eee;
+}
+
+body.dark-mode .search-container,
+body.dark-mode .detail-card,
+body.dark-mode .forecast-table {
+  background: #1e1e1e;
+  color: #ddd;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .forecast-table th {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+body.dark-mode .forecast-table tr:hover {
+  background-color: #252525;
+}
+
+body.dark-mode .header-buttons button {
+  background: #333;
+  color: #eee;
+}
+
+body.dark-mode .header-buttons button:hover {
+  background: #444;
+}
+
+/* ---------- ANIMASI MASUK ---------- */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
