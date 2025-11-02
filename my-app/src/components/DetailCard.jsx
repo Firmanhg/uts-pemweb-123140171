@@ -1,3 +1,5 @@
+// FILE: DetailCard.jsx (Versi Font Awesome)
+
 import React from "react";
 
 const DetailCard = ({ weather, unit, city }) => {
@@ -5,42 +7,41 @@ const DetailCard = ({ weather, unit, city }) => {
   const tempUnit = unit === "metric" ? "°C" : "°F";
   const windUnit = unit === "metric" ? "m/s" : "mph";
 
-  // BARU: Pemetaan Ikon ke Emoji
-  const getEmoji = (code) => {
-    const MAPPING = {
-      '01d': '☀️', // Cerah (Siang)
-      '01n': '🌙', // Cerah (Malam)
-      '02d': '⛅', // Sedikit Berawan (Siang)
-      '02n': '☁️', // Sedikit Berawan (Malam)
-      '03d': '☁️', // Berawan
-      '03n': '☁️', // Berawan
-      '04d': '☁️', // Sangat Berawan
-      '04n': '☁️', // Sangat Berawan
-      '09d': '🌧️', // Hujan Deras
-      '09n': '🌧️', // Hujan Deras
-      '10d': '🌦️', // Hujan (Siang)
-      '10n': '🌧️', // Hujan (Malam)
-      '11d': '⛈️', // Badai
-      '11n': '⛈️', // Badai
-      '13d': '❄️', // Salju
-      '13n': '❄️', // Salju
-      '50d': '🌫️', // Kabut
-      '50n': '🌫️', // Kabut
-    };
-    return MAPPING[code] || '❔'; // Fallback
+  // BARU: Pemetaan Ikon ke Kelas Font Awesome
+  const getFontAwesomeClass = (code) => {
+    const baseClass = "fa-solid";
+    switch (code) {
+      case '01d': return `${baseClass} fa-sun`;
+      case '01n': return `${baseClass} fa-moon`;
+      case '02d': return `${baseClass} fa-cloud-sun`;
+      case '02n': return `${baseClass} fa-cloud-moon`;
+      case '03d':
+      case '03n': return `${baseClass} fa-cloud`;
+      case '04d':
+      case '04n': return `${baseClass} fa-cloud-meatball`; // Awan lebih tebal
+      case '09d':
+      case '09n': return `${baseClass} fa-cloud-showers-heavy`;
+      case '10d': return `${baseClass} fa-cloud-sun-rain`;
+      case '10n': return `${baseClass} fa-cloud-moon-rain`;
+      case '11d':
+      case '11n': return `${baseClass} fa-cloud-bolt`;
+      case '13d':
+      case '13n': return `${baseClass} fa-snowflake`;
+      case '50d':
+      case '50n': return `${baseClass} fa-smog`;
+      default: return `${baseClass} fa-temperature-half`;
+    }
   };
   
-  const weatherIconEmoji = getEmoji(weather.weather[0].icon);
+  const iconClass = getFontAwesomeClass(weather.weather[0].icon);
 
   return (
     <div className="detail-card">
       <h2>{weather.dt_txt.split(" ")[0]}</h2>
       <h4 className="detail-city-name">{city}</h4>
 
-      {/* GANTI <img> dengan <span> emoji */}
-      <span className="weather-icon-emoji" role="img">
-        {weatherIconEmoji}
-      </span>
+      {/* GANTI <i> Climacon dengan <i> Font Awesome */}
+      <i className={`weather-icon-fa ${iconClass}`}></i>
       
       <h3>{weather.weather[0].description}</h3>
       <p>🌡️ Suhu: {weather.main.temp.toFixed(1)} {tempUnit}</p>

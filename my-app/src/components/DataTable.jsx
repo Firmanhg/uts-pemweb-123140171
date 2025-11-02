@@ -1,22 +1,34 @@
+// FILE: DataTable.jsx (Versi Font Awesome)
+
 import React from "react";
 
 const DataTable = ({ forecast, unit }) => {
   const tempUnit = unit === "metric" ? "°C" : "°F";
 
-  // BARU: Pemetaan Ikon ke Emoji
-  const getEmoji = (code) => {
-    const MAPPING = {
-      '01d': '☀️', '01n': '🌙',
-      '02d': '⛅', '02n': '☁️',
-      '03d': '☁️', '03n': '☁️',
-      '04d': '☁️', '04n': '☁️',
-      '09d': '🌧️', '09n': '🌧️',
-      '10d': '🌦️', '10n': '🌧️',
-      '11d': '⛈️', '11n': '⛈️',
-      '13d': '❄️', '13n': '❄️',
-      '50d': '🌫️', '50n': '🌫️',
-    };
-    return MAPPING[code] || '❔';
+  // BARU: Pemetaan Ikon ke Kelas Font Awesome
+  const getFontAwesomeClass = (code) => {
+    const baseClass = "fa-solid";
+    switch (code) {
+      case '01d': return `${baseClass} fa-sun`;
+      case '01n': return `${baseClass} fa-moon`;
+      case '02d': return `${baseClass} fa-cloud-sun`;
+      case '02n': return `${baseClass} fa-cloud-moon`;
+      case '03d':
+      case '03n': return `${baseClass} fa-cloud`;
+      case '04d':
+      case '04n': return `${baseClass} fa-cloud-meatball`;
+      case '09d':
+      case '09n': return `${baseClass} fa-cloud-showers-heavy`;
+      case '10d': return `${baseClass} fa-cloud-sun-rain`;
+      case '10n': return `${baseClass} fa-cloud-moon-rain`;
+      case '11d':
+      case '11n': return `${baseClass} fa-cloud-bolt`;
+      case '13d':
+      case '13n': return `${baseClass} fa-snowflake`;
+      case '50d':
+      case '50n': return `${baseClass} fa-smog`;
+      default: return `${baseClass} fa-temperature-half`;
+    }
   };
 
   return (
@@ -37,10 +49,8 @@ const DataTable = ({ forecast, unit }) => {
             <tr key={i}>
               <td>{item.dt_txt.split(" ")[0]}</td>
               <td>
-                {/* GANTI <img> dengan <span> emoji */}
-                <span className="table-weather-icon-emoji" role="img">
-                  {getEmoji(item.weather[0].icon)}
-                </span>
+                {/* GANTI <i> Climacon dengan <i> Font Awesome */}
+                <i className={`table-weather-icon-fa ${getFontAwesomeClass(item.weather[0].icon)}`}></i>
                 {' '}
                 {item.weather[0].main}
               </td>

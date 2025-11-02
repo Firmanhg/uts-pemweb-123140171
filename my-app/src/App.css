@@ -1,5 +1,5 @@
 /* ---------------------------------- */
-/* FILE: App.css (Final: Brighter Aurora) */
+/* FILE: App.css (Final: Responsive Icons) */
 /* ---------------------------------- */
 
 
@@ -10,10 +10,9 @@ body {
   min-height: 100vh;
 }
 
-/* --- PERUBAHAN DI SINI --- */
 /* Aurora untuk Light Mode (Vibrant) */
 body.light-mode {
-  background-color: #dbeafe; /* BARU: Latar belakang biru-langit muda */
+  background-color: #dbeafe; 
   color: #1e1e1e;
 }
 body.light-mode::before, 
@@ -22,7 +21,7 @@ body.light-mode::after {
   position: fixed;
   z-index: -1;
   filter: blur(100px);
-  opacity: 0.8; /* BARU: Lebih kuat lagi (dari 0.6 ke 0.8) */
+  opacity: 0.8; 
   border-radius: 50%;
 }
 body.light-mode::before {
@@ -35,10 +34,9 @@ body.light-mode::after {
   width: 500px; height: 500px;
   bottom: -200px; right: -200px;
 }
-/* --- AKHIR PERUBAHAN --- */
 
 
-/* Aurora untuk Dark Mode (Tetap sama) */
+/* Aurora untuk Dark Mode */
 body.dark-mode {
   background-color: #121826; 
   color: #e0e0e0;
@@ -290,33 +288,85 @@ body.dark-mode .forecast-table tr:hover {
 }
 
 
-/* --- 9. Animasi & Ikon Emoji --- */
+/* --- 9. Animasi & Ikon Font Awesome (BARU) --- */
 
-.weather-icon-emoji {
-  font-size: 100px; 
-  line-height: 1.2;
+.weather-icon-fa {
+  font-size: 90px;
+  line-height: 1;
   display: inline-block;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
+  padding: 0.5rem;
   animation: float 4s ease-in-out infinite; 
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
-.table-weather-icon-emoji {
-  font-size: 1.8rem; 
+.table-weather-icon-fa {
+  font-size: 1.5rem; 
   vertical-align: middle;
   line-height: 1;
+  width: 30px; 
+  text-align: center;
+  margin-right: 0.5rem;
+}
+
+/* --- Pewarnaan Ikon (Light Mode) --- */
+body.light-mode .fa-sun,
+body.light-mode .fa-cloud-sun {
+  color: #f59e0b; /* Kuning-Oranye tua */
+}
+body.light-mode .fa-moon,
+body.light-mode .fa-cloud-moon {
+  color: #6b7280; /* Abu-abu tua (bulan "mati") */
+}
+body.light-mode .fa-cloud,
+body.light-mode .fa-cloud-meatball,
+body.light-mode .fa-smog {
+  color: #9ca3af; /* Abu-abu netral */
+}
+body.light-mode .fa-cloud-showers-heavy,
+body.light-mode .fa-cloud-sun-rain,
+body.light-mode .fa-cloud-moon-rain,
+body.light-mode .fa-cloud-bolt {
+  color: #3b82f6; /* Biru tua */
+}
+body.light-mode .fa-snowflake {
+  color: #06b6d4; /* Cyan tua */
+}
+
+/* --- Pewarnaan Ikon (Dark Mode) --- */
+body.dark-mode .fa-sun,
+body.dark-mode .fa-cloud-sun {
+  color: #facc15; /* Kuning cerah */
+}
+body.dark-mode .fa-moon,
+body.dark-mode .fa-cloud-moon {
+  color: #e5e7eb; /* Putih/Abu-abu sangat muda */
+}
+body.dark-mode .fa-cloud,
+body.dark-mode .fa-cloud-meatball,
+body.dark-mode .fa-smog {
+  color: #d1d5db; /* Abu-abu muda */
+}
+body.dark-mode .fa-cloud-showers-heavy,
+body.dark-mode .fa-cloud-sun-rain,
+body.dark-mode .fa-cloud-moon-rain,
+body.dark-mode .fa-cloud-bolt {
+  color: #60a5fa; /* Biru muda */
+}
+body.dark-mode .fa-snowflake {
+  color: #a5f3fc; /* Biru es */
 }
 
 /* --- Keyframes --- */
 
-/* Animasi Float (Dipakai oleh emoji besar) */
+/* Animasi Float */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
-/* Animasi masuk (Dipakai oleh kartu) */
+/* Animasi masuk */
 @keyframes fadeIn {
   from {
     opacity: 0;
